@@ -4,8 +4,8 @@ import './Result.css';
 
 class Result extends React.Component{
       render(){
-          var correct=0;
-          var wrong=0;
+          var correct=0;//hold number of correctly answered questions
+          var wrong=0;//hold number of wrongly answered questions
           console.log(this.props.marks)
           for (var i in this.props.marks){
               if((this.props.marks[i])[1]==="correct"){
@@ -17,7 +17,7 @@ class Result extends React.Component{
           }
           
           var quote=""
-          var percent=parseInt((correct/11*100));
+          var percent=parseInt((correct/11*100));//calculating the percentage based on the answers and gives us a quote based on the percentage
           if(percent>90){
               quote="Excellent"
           }
@@ -38,7 +38,7 @@ class Result extends React.Component{
               <div className="box">
                   <div>{quote}</div>
                   <div>{percent}%</div>
-                  <pre><span>Total Number of Questions</span><span>15</span></pre>
+                  <pre><span>Total Number of Questions</span><span>11</span></pre>
                   <pre><span>Total Number of Attempted Questions</span><span>{Object.keys(this.props.marks).length}</span></pre>
                   <pre><span>Total Number of Correct Answers</span><span>{correct}</span></pre>
                   <pre><span>Total Number of Wrong Answers</span><span>{wrong}</span></pre>

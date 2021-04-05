@@ -9,7 +9,8 @@ import './App.css';
 import Home from './Component/HomeComponent/HomeComponent';
 import Quiz from './Component/QuizComponent/Quiz'
 function App() {
-  return (<Router basename={window.location.pathname || ''>
+  return (
+  <Router basename={window.location.pathname || ''}>
     <Switch>
       <Route exact path="/">
            <Home></Home>

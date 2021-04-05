@@ -3,17 +3,17 @@ import axios from 'axios';
 import './Quiz.css'
 import Result from '../ResultComponent/ResultComponent';
 
-var x;
-var attempted={};
+var x; //used to hold the current question number
+var attempted={}; //this object hold the answers are correct or wrong
 class Quiz extends React.Component{
     constructor(){
         super();
         this.state={
-                   list:[],
-                   timer:120,
-                   i:0,
-                   initial:120,
-                   isrender:"quiz"
+                   list:[],      //contain list of question related things got from api
+                   timer:120,    //totlay 120s and we need to answer all the questions within 120s
+                   i:0,          //question number
+                   initial:120,  //hold the current time and after 10s next question will popup
+                   isrender:"quiz"//render which component
                 }
     }
     componentDidMount(){
@@ -21,25 +21,28 @@ class Quiz extends React.Component{
                 .then(res=>res.data)
                 .then(res=>{this.setState({list:res})})
                 .catch(err=>console.log(err))
-                this.intervalId = setInterval(this.timer, 1000);
+                this.intervalId = setInterval(this.timer, 1000); //starts a timer for 120s
             }
     timer=()=> { 
-        if(this.state.initial-this.state.timer===10 && this.state.i<this.state.list.length){
+        //after 10s next question will rise 
+        if(this.state.initial-this.state.timer===10 && this.state.i+1<this.state.list.length){ 
+            console.log(this.state.i,this.state.list.length)
             this.setState({i:this.state.i+1,
                 initial:this.state.timer,
                 timer:this.state.timer - 1})
         }
         else if (this.state.timer < 1) {
              clearInterval(this.intervalId);
+             this.setState({isrender:"result"})
         }
         else{
             this.setState({timer: this.state.timer - 1})
             }
         }
-    quit=()=>{
+    quit=()=>{ //when quit button is clicked then show the result
         this.setState({isrender:"result"})
     }
-    previous=()=>{
+    previous=()=>{//go to previous question when previous button is clicked
         if(this.state.i===0){
             alert("This is the First Question")
         }
@@ -48,7 +51,8 @@ class Quiz extends React.Component{
                            i:this.state.i-1})
         }
     }
-    next=()=>{
+    next=()=>{//go to next question when next button is clicked
+
         if(this.state.i+1===this.state.list.length){
             alert("Quiz is fininshed")
             this.setState({isrender:"result"})
@@ -58,7 +62,7 @@ class Quiz extends React.Component{
                 i:this.state.i+1})
         }
     }
-    nextquestion=(e,option)=>{ 
+    nextquestion=(e,option)=>{ //when question is answerd then add it into attempted object and gives color based on the answer
         x=this.state.isrender
         console.log(this.state.list[this.state.i].answer)
         if(this.state.list[this.state.i].answer===e.target.innerHTML){
