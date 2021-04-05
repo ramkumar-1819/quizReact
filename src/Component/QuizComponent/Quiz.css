@@ -1,0 +1,71 @@
+body{
+    background-color: rgb(69, 69, 158);
+}
+.main{
+    position: relative;
+    top:100px;
+    width:80%;
+    height:65vh;
+    background-color:white;
+    margin: auto;
+}
+.main>div:first-child{
+    font-size:xx-large;
+    font-weight: bold;
+    text-align: center;
+}
+.question{
+    margin:10px 0 0 5px;
+    display: flex;
+}
+.question>div:nth-child(2){
+   position: relative;
+    right: 10px;
+    width:60%;
+    text-align: center;
+    margin: auto;
+}
+.answers{
+    width:100%;
+    margin-top: 30px;
+    height:30vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+}
+.answers>button{
+    width:400px;
+    height: 7vh;
+    border-radius: 30px;
+    outline: none;
+    border:1px solid black;
+    margin-top: 25px;
+}
+.buttons{
+    width:400px;
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto;
+}
+.buttons>button{
+    margin-top: 20px;
+    width: 100px;
+    color: white;
+    outline: none;
+    border:1px solid black;
+}
+.option{
+    color:white;
+    background-color: blue;
+}
+.buttons>button:first-child{
+    background-color: green;
+}
+.buttons>button:nth-child(2){
+    background-color: orange;
+}
+.buttons>button:last-child{
+    background-color: red;
+}
